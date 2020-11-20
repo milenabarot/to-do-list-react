@@ -1,42 +1,51 @@
 import "./App.css";
 import Header from "./components/header";
+import Todos from "./components/todos";
 import createReactClass from "create-react-class";
 
 const App = createReactClass({
   getInitialState() {
     return {
-      shouldShowHeader: true,
-      title: "To Do List",
+      newToDo: "",
+      toDoList: [],
+      id: 0,
     };
   },
-  toggleHeader() {
-    // this changes the state of the shouldShowHeader property to the opposite of what it is
+
+  updateNewToDo(event) {
+    // this is called when input field is altered, onChanged triggered, which calls this and makes the title equal to the new value. Which then changes the value of header title prop
     this.setState({
-      shouldShowHeader: !this.state.shouldShowHeader,
+      newToDo: event.target.value,
     });
   },
-  changeTitle(event) {
-    // this is called when input field is altered, onChanged triggered, which calls this and makes the title equal to the knew value. Which then changes the value of header title prop
+
+  // this is adding a newToDo that has been typed in the input field and adding it to the toDoList array
+  addToList() {
+    // this is a newToDo as an object which gets passed into the toDoList below
+    const newToDoObject = {
+      name: this.state.newToDo,
+      id: this.state.id,
+      bin: false,
+      done: false,
+    };
+    //clearing the newToDo and setting the state with the newToDo in it
     this.setState({
-      title: event.target.value,
+      newToDo: "",
+      toDoList: [...this.state.toDoList, newToDoObject],
+      id: this.state.id + 1,
     });
   },
+
   render() {
     // below is tenary operator that conditionally renders header when button is clicked
     return (
       <div className="App">
-        {this.state.shouldShowHeader ? (
-          <Header
-            title={this.state.title}
-            subtitle="What do you want to do today?"
-          />
-        ) : null}
-        <button onClick={this.toggleHeader}>Click me</button>
-        <input
-          onChange={this.changeTitle}
-          type="text"
-          value={this.state.title}
+        <Header
+          newToDo={this.state.newToDo}
+          update={this.updateNewToDo}
+          addToList={this.addToList}
         />
+        <Todos toDoListItems={this.state.toDoList} />
       </div>
     );
   },

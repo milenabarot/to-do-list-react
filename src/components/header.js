@@ -1,8 +1,9 @@
 function Header(props) {
   return (
     <header className="header">
-      <h1>{props.title}</h1>
-      <h2>{props.subtitle}</h2>
+      <h1>To Do List</h1>
+      <input onChange={props.update} type="text" value={props.newToDo} />
+      <button onClick={props.addToList}>Add</button>
     </header>
   );
 }
