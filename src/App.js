@@ -13,7 +13,7 @@ const App = createReactClass({
   },
 
   updateNewToDo(event) {
-    // this is called when input field is altered, onChanged triggered, which calls this and makes the title equal to the new value. Which then changes the value of header title prop
+    // this is called when input field is altered, onChanged triggered, which calls this and makes the input value equal to the new value entered in input field. Which then changes the value of the newtodo prop
     this.setState({
       newToDo: event.target.value,
     });
@@ -36,8 +36,43 @@ const App = createReactClass({
     });
   },
 
+  editToDo(event) {
+    const updatedToDoListItemName = event.target.value; // getting the new value of the todo
+    let updatedToDoList = [...this.state.toDoList]; // making a copy of the toDoList
+    updatedToDoList[event.target.id] = {
+      ...updatedToDoList[event.target.id],
+      name: updatedToDoListItemName,
+    }; //getting the object of the new todolist and assigning it to a copy with just a changed name property
+
+    this.setState({
+      toDoList: updatedToDoList, //everytime a value is changed, updating the state of toDoList to the new updatedToDoList
+    });
+  },
+
+  removeToDo(event) {
+    let updatedToDoList = [...this.state.toDoList]; // making a copy of the toDoList
+    updatedToDoList[event.target.id] = {
+      ...updatedToDoList[event.target.id],
+      bin: true,
+    }; //getting the object of the new todolist and assigning it to a copy with just a changed bin property
+    this.setState({
+      toDoList: updatedToDoList, //everytime the button is cicked, updating the state of toDoList to the new updatedToDoList, with bin now true for that item
+    });
+  },
+
+  completeToDo(event) {
+    let updatedToDoList = [...this.state.toDoList]; // making a copy of the toDoList
+    updatedToDoList[event.target.id] = {
+      ...updatedToDoList[event.target.id],
+      done: !updatedToDoList[event.target.id].done,
+    }; //getting the object of the new todolist and assigning it to a copy with just a changed done property
+    this.setState({
+      toDoList: updatedToDoList, //everytime the button is cicked, updating the state of toDoList to the new updatedToDoList, with bin now true for that item
+    });
+  },
+
   render() {
-    // below is tenary operator that conditionally renders header when button is clicked
+    // below is rendering the header and todos components
     return (
       <div className="App">
         <Header
@@ -45,7 +80,12 @@ const App = createReactClass({
           update={this.updateNewToDo}
           addToList={this.addToList}
         />
-        <Todos toDoListItems={this.state.toDoList} />
+        <Todos
+          toDoListItems={this.state.toDoList}
+          editToDo={this.editToDo}
+          removeToDo={this.removeToDo}
+          completeToDo={this.completeToDo}
+        />
       </div>
     );
   },
