@@ -1,0 +1,13 @@
+.App {
+  text-align: center;
+  color: darkblue;
+  margin: 200px;
+  padding: 50px;
+  border: 2px solid navy;
+  border-radius: 10px;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+}

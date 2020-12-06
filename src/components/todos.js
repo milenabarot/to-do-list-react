@@ -1,23 +1,27 @@
 import _ from "lodash";
-import { motion } from "framer-motion";
+import { motion, AnimateSharedLayout } from "framer-motion";
 import TodoItem from "./todoItem";
+import "../styles/todos.css";
 
 function Todos(props) {
   const sortedToDoList = _.orderBy(props.toDoListItems, "name", "asc");
   return (
     // sorted todolistitems, using lodash(a-z) orderBy method, which gives me new const sortedtodolist, and then mapped over this to create a list with li's
     //added in framer animation using props
-    <ul>
-      {sortedToDoList.map((item) => (
-        <TodoItem
-          key={item.id}
-          editToDo={props.editToDo}
-          item={item}
-          removeToDo={props.removeToDo}
-          completeToDo={props.completeToDo}
-        />
-      ))}
-    </ul>
+    // item is the name of the iteratee, that it passed through the map function of todolistitems, and then every to do item is then the 'item'
+    <AnimateSharedLayout type="crossfade">
+      <motion.ul layout className="listItems">
+        {sortedToDoList.map((item) => (
+          <TodoItem
+            key={item.id}
+            editToDo={props.editToDo}
+            item={item}
+            removeToDo={props.removeToDo}
+            completeToDo={props.completeToDo}
+          />
+        ))}
+      </motion.ul>
+    </AnimateSharedLayout>
   );
 }
 

@@ -1,4 +1,4 @@
-import "./App.css";
+import "./styles/App.css";
 import Header from "./components/header";
 import Todos from "./components/todos";
 import createReactClass from "create-react-class";
@@ -10,6 +10,22 @@ const App = createReactClass({
       toDoList: [],
       id: 0,
     };
+  },
+
+  // local storage- this is 'getting' the LIST from local storage, assigning it to data, and if there are any exisitng item, putting them into state to show them
+  componentDidMount() {
+    const data = localStorage.getItem("LIST");
+    if (data) {
+      this.setState({
+        toDoList: JSON.parse(data),
+        id: JSON.parse(data).length,
+      });
+    }
+  },
+
+  // local storage- every time component updates the local storage is updated with the current todolist, and assigned to the key 'LIST'
+  componentDidUpdate() {
+    localStorage.setItem("LIST", JSON.stringify(this.state.toDoList));
   },
 
   updateNewToDo(event) {
@@ -67,8 +83,23 @@ const App = createReactClass({
       done: !updatedToDoList[event.target.id].done,
     }; //getting the object of the new todolist and assigning it to a copy with just a changed done property
     this.setState({
-      toDoList: updatedToDoList, //everytime the button is cicked, updating the state of toDoList to the new updatedToDoList, with bin now true for that item
+      toDoList: updatedToDoList, //everytime the button is cicked, updating the state of toDoList to the new updatedToDoList, with done now true for that item
     });
+  },
+
+  // clearing the to do list, setting it equal to empty array onClick
+  clearToDos(event) {
+    this.setState({
+      toDoList: [],
+      id: 0,
+    });
+  },
+
+  // adding a new item to the todolist array when press enter key
+  onNewToDoKeyDown(event) {
+    if (event.keyCode === 13) {
+      this.addToList();
+    }
   },
 
   render() {
@@ -79,6 +110,9 @@ const App = createReactClass({
           newToDo={this.state.newToDo}
           update={this.updateNewToDo}
           addToList={this.addToList}
+          clearToDos={this.clearToDos}
+          toDoList={this.state.toDoList}
+          onNewToDoKeyDown={this.onNewToDoKeyDown}
         />
         <Todos
           toDoListItems={this.state.toDoList}

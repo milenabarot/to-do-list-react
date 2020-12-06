@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import "../styles/todoItem.css";
 
 // when bin has been assigned true, this function will remove the item from the todolist render
 function TodoItem(props) {
@@ -8,6 +9,7 @@ function TodoItem(props) {
   }
   return (
     <motion.li
+      className="toDoItem"
       initial={{ opacity: 0, transitionDuration: 2 }}
       animate={{ opacity: 1, transitionDuration: 2 }}
     >
