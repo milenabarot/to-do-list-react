@@ -1,8 +1,10 @@
 .App {
   text-align: center;
   color: darkblue;
-  margin: 200px;
-  padding: 50px;
+  max-width: 500px;
+  min-width: 300px;
+  margin: 10% 30%;
+  padding: 40px;
   border: 2px solid navy;
   border-radius: 10px;
 }
@@ -10,4 +12,14 @@
 button {
   background-color: transparent;
   border: none;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+input {
+  font-family: inherit;
 }

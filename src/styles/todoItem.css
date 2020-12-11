@@ -1,3 +1,18 @@
 .toDoItem {
   padding: 5px;
+  font-family: "Courgette", cursive;
+}
+
+.checkBox {
+  margin-right: 13px;
+  border: green;
+}
+.toDoValue {
+  padding: 8px;
+}
+
+.removeButton {
+  font-family: "Pathway Gothic One", sans-serif;
+  font-size: 15px;
+  margin-left: 6px;
 }

@@ -10,23 +10,25 @@ function TodoItem(props) {
   return (
     <motion.li
       className="toDoItem"
-      initial={{ opacity: 0, transitionDuration: 2 }}
-      animate={{ opacity: 1, transitionDuration: 2 }}
+      initial={{ opacity: 0, transition: { duration: 1 } }}
+      animate={{ opacity: 1, transition: { duration: 1 } }}
     >
       <input
+        className="checkBox"
         type="checkbox"
         onChange={props.completeToDo}
         checked={item.done}
         id={item.id}
       />
       <input
+        className="toDoValue"
         onChange={props.editToDo}
         type="text"
         value={item.name}
         id={item.id}
         disabled={item.done}
       />
-      <button onClick={props.removeToDo} id={item.id}>
+      <button className="removeButton" onClick={props.removeToDo} id={item.id}>
         Remove
       </button>
     </motion.li>

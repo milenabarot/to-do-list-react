@@ -4,7 +4,12 @@ import TodoItem from "./todoItem";
 import "../styles/todos.css";
 
 function Todos(props) {
-  const sortedToDoList = _.orderBy(props.toDoListItems, "name", "asc");
+  // the sortedtodolist ordered by done and date property with lodash
+  const sortedToDoList = _.orderBy(
+    props.toDoListItems,
+    ["done", "date"],
+    ["asc", "desc"]
+  );
   return (
     // sorted todolistitems, using lodash(a-z) orderBy method, which gives me new const sortedtodolist, and then mapped over this to create a list with li's
     //added in framer animation using props

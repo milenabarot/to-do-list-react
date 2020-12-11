@@ -1,4 +1,5 @@
 import "../styles/header.css";
+import HeaderAddTodo from "./headerAddTodo";
 
 function Header(props) {
   return (
@@ -11,16 +12,13 @@ function Header(props) {
           disabled={props.toDoList.length === 0}
         ></button>
       </div>
-      <input
-        className="newToDo"
-        onChange={props.update}
-        onKeyDown={props.onNewToDoKeyDown}
-        type="text"
-        value={props.newToDo}
+      <HeaderAddTodo
+        onNewToDoKeyDown={props.onNewToDoKeyDown}
+        update={props.update}
+        newToDo={props.newToDo}
+        addToList={props.addToList}
+        toDoList={props.toDoList}
       />
-      <button disabled={props.newToDo.length === 0} onClick={props.addToList}>
-        Add
-      </button>
     </header>
   );
 }

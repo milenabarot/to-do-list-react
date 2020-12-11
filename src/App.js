@@ -1,6 +1,7 @@
 import "./styles/App.css";
 import Header from "./components/header";
 import Todos from "./components/todos";
+import TodoSettings from "./components/todoSettings";
 import createReactClass from "create-react-class";
 
 const App = createReactClass({
@@ -9,6 +10,7 @@ const App = createReactClass({
       newToDo: "",
       toDoList: [],
       id: 0,
+      backgroundColor: "white",
     };
   },
 
@@ -21,11 +23,18 @@ const App = createReactClass({
         id: JSON.parse(data).length,
       });
     }
+    const backgroundColorLocalStorage = localStorage.getItem("COLOR");
+    if (backgroundColorLocalStorage) {
+      this.setState({
+        backgroundColor: backgroundColorLocalStorage,
+      });
+    }
   },
 
   // local storage- every time component updates the local storage is updated with the current todolist, and assigned to the key 'LIST'
   componentDidUpdate() {
     localStorage.setItem("LIST", JSON.stringify(this.state.toDoList));
+    localStorage.setItem("COLOR", this.state.backgroundColor);
   },
 
   updateNewToDo(event) {
@@ -37,12 +46,16 @@ const App = createReactClass({
 
   // this is adding a newToDo that has been typed in the input field and adding it to the toDoList array
   addToList() {
+    if (this.state.toDoList.length >= 15) {
+      return window.alert("Too many items in the list");
+    }
     // this is a newToDo as an object which gets passed into the toDoList below
     const newToDoObject = {
       name: this.state.newToDo,
       id: this.state.id,
       bin: false,
       done: false,
+      date: Date.now(),
     };
     //clearing the newToDo and setting the state with the newToDo in it
     this.setState({
@@ -102,10 +115,20 @@ const App = createReactClass({
     }
   },
 
+  // event that changes the background color of app
+  handleChangeBackgroundColor(event) {
+    this.setState({
+      backgroundColor: event.target.value,
+    });
+  },
+
   render() {
     // below is rendering the header and todos components
     return (
-      <div className="App">
+      <div
+        className="App"
+        style={{ backgroundColor: this.state.backgroundColor }}
+      >
         <Header
           newToDo={this.state.newToDo}
           update={this.updateNewToDo}
@@ -119,6 +142,10 @@ const App = createReactClass({
           editToDo={this.editToDo}
           removeToDo={this.removeToDo}
           completeToDo={this.completeToDo}
+        />
+        <TodoSettings
+          changeBackgroundColor={this.handleChangeBackgroundColor}
+          backgroundColor={this.state.backgroundColor}
         />
       </div>
     );

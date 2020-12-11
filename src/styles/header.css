@@ -1,5 +1,7 @@
 .header {
-  color: red;
+  color: darkolivegreen;
+  font-family: "Abril Fatface", cursive;
+  font-size: 27px;
 }
 
 .clearButton {
@@ -14,8 +16,27 @@
   border: none;
 }
 
-.newToDo {
-  border: 1px solid darkblue;
-  border-radius: 5px;
+.newToDoSection {
+  padding: 5px 10px 5px 45px;
   margin: 10px;
+}
+
+.newToDoValue {
+  border: 2px solid white;
+  border-radius: 7px;
+  margin: 10px;
+  font-size: 18px;
+  font-family: "Courgette", cursive;
+  padding: 10px;
+  background-color: rgba(195, 246, 255, 0.5);
+  transition: 0.5s ease-in;
+}
+
+.newToDoValue:hover {
+  background-color: rgb(136, 148, 115, 0.3);
+}
+
+.addButton {
+  font-family: "Pathway Gothic One", sans-serif;
+  font-size: 25px;
 }
