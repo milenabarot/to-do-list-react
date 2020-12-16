@@ -4,7 +4,7 @@ import TodoItem from "./todoItem";
 import "../styles/todos.css";
 
 function Todos(props) {
-  // the sortedtodolist ordered by done and date property with lodash
+  // the sortedtodolist ordered by done and date property with lodash method
   const sortedToDoList = _.orderBy(
     props.toDoListItems,
     ["done", "date"],

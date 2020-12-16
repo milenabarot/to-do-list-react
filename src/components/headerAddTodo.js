@@ -9,12 +9,11 @@ function HeaderAddTodo(props) {
         onKeyDown={props.onNewToDoKeyDown}
         type="text"
         value={props.newToDo}
-        // disabled={props.toDoList.length >= 15}
+        disabled={props.toDoList.length >= 15}
       />
       <button
         className="addButton"
         disabled={props.newToDo.length === 0}
-        //    props.toDoList.length >= 15
         onClick={props.addToList}
       >
         Add

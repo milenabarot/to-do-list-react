@@ -5,10 +5,14 @@
 
 .checkBox {
   margin-right: 13px;
-  border: green;
+  color: green;
 }
 .toDoValue {
-  padding: 8px;
+  outline: none;
+  padding: 10px;
+  border: 1px solid green;
+  border-radius: 5px;
+  width: 63%;
 }
 
 .removeButton {

@@ -1,7 +1,27 @@
 .header {
-  color: darkolivegreen;
+  color: rgb(90, 112, 51, 0.7);
   font-family: "Abril Fatface", cursive;
   font-size: 27px;
+}
+
+.titleUnderline {
+  position: relative;
+  text-decoration: none;
+}
+
+.titleUnderline::after {
+  position: absolute;
+  content: "";
+  height: 2px;
+  bottom: -1px;
+  width: 0;
+  left: 15%;
+  background: rgb(90, 112, 51, 0.7);
+  transition: 0.6s ease-in-out;
+}
+
+.titleUnderline:hover::after {
+  width: 72%;
 }
 
 .clearButton {
@@ -10,6 +30,7 @@
   background-repeat: no-repeat;
   height: 35px;
   width: 35px;
+  padding: 10px;
 }
 
 .clearButton:focus {
@@ -17,18 +38,18 @@
 }
 
 .newToDoSection {
-  padding: 5px 10px 5px 45px;
+  padding: 13px 10px 5px 45px;
   margin: 10px;
 }
 
 .newToDoValue {
-  border: 2px solid white;
+  border: 1px solid rgba(143, 186, 194, 0.5);
   border-radius: 7px;
   margin: 10px;
   font-size: 18px;
   font-family: "Courgette", cursive;
   padding: 10px;
-  background-color: rgba(195, 246, 255, 0.5);
+  background-color: rgba(143, 186, 194, 0.5);
   transition: 0.5s ease-in;
 }
 
@@ -39,4 +60,12 @@
 .addButton {
   font-family: "Pathway Gothic One", sans-serif;
   font-size: 25px;
+  color: black;
+  padding: 5px;
+  border-radius: 5px;
+  transition: 0.3s ease-in-out;
+}
+
+.addButton:hover {
+  transform: scale(1.2);
 }

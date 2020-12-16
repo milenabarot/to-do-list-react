@@ -5,7 +5,7 @@ function Header(props) {
   return (
     <header className="header">
       <div>
-        <h1>To Do List</h1>
+        <h1 className="titleUnderline">To Do List</h1>
         <button
           className="clearButton"
           onClick={props.clearToDos}

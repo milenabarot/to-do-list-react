@@ -4,9 +4,7 @@ import "../styles/todoItem.css";
 // when bin has been assigned true, this function will remove the item from the todolist render
 function TodoItem(props) {
   const item = props.item;
-  if (item.bin === true) {
-    return null;
-  }
+
   return (
     <motion.li
       className="toDoItem"
