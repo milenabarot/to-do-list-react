@@ -1,0 +1,27 @@
+.selectArea {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Pathway Gothic One", sans-serif;
+  color: green;
+}
+
+.selectBackgroundColor {
+  color: green;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 17px;
+}
+
+.selectDropdown__control {
+  min-width: 170px;
+  font-size: 15px;
+}
+
+.selectDropdown__menu {
+  padding: 5px;
+  font-size: 15px;
+}

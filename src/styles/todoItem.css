@@ -3,16 +3,23 @@
   font-family: "Courgette", cursive;
 }
 
-.checkBox {
-  margin-right: 13px;
-  color: green;
-}
 .toDoValue {
   outline: none;
   padding: 10px;
-  border: 1px solid green;
+  border: 1px solid rgba(143, 186, 194, 0.5);
+  background-color: 1px solid rgba(143, 186, 194, 0.5);
   border-radius: 5px;
   width: 63%;
+  transition: 0.3s ease-in-out;
+}
+
+.toDoValue:hover {
+  background-color: rgb(136, 148, 115, 0.3);
+}
+
+.toDoValue:disabled {
+  background-color: lightgray;
+  border: 1px solid lightgray;
 }
 
 .removeButton {

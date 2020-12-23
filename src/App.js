@@ -11,7 +11,7 @@ const App = createReactClass({
       newToDo: "",
       toDoList: [],
       id: 0,
-      backgroundColor: "white",
+      backgroundColor: { value: "white", label: "White" },
     };
   },
 
@@ -31,8 +31,11 @@ const App = createReactClass({
     }
     const backgroundColorLocalStorage = localStorage.getItem("COLOR");
     if (backgroundColorLocalStorage) {
+      const backgroundColorLocalStorageObject = JSON.parse(
+        backgroundColorLocalStorage
+      );
       this.setState({
-        backgroundColor: backgroundColorLocalStorage,
+        backgroundColor: backgroundColorLocalStorageObject,
       });
     }
   },
@@ -43,7 +46,7 @@ const App = createReactClass({
       return window.alert("Too many items in the list");
     }
     localStorage.setItem("LIST", JSON.stringify(this.state.toDoList));
-    localStorage.setItem("COLOR", this.state.backgroundColor);
+    localStorage.setItem("COLOR", JSON.stringify(this.state.backgroundColor));
   },
 
   updateNewToDo(event) {
@@ -134,9 +137,9 @@ const App = createReactClass({
   },
 
   // event that changes the background color of app
-  handleChangeBackgroundColor(event) {
+  handleChangeBackgroundColor(backgroundColor) {
     this.setState({
-      backgroundColor: event.target.value,
+      backgroundColor,
     });
   },
 
@@ -145,7 +148,7 @@ const App = createReactClass({
     return (
       <div
         className="App"
-        style={{ backgroundColor: this.state.backgroundColor }}
+        style={{ backgroundColor: this.state.backgroundColor.value }}
       >
         <Header
           newToDo={this.state.newToDo}

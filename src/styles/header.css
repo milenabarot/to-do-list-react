@@ -37,6 +37,8 @@
   border: none;
 }
 
+/* add to dos */
+
 .newToDoSection {
   padding: 13px 10px 5px 45px;
   margin: 10px;
@@ -49,8 +51,9 @@
   font-size: 18px;
   font-family: "Courgette", cursive;
   padding: 10px;
-  background-color: rgba(143, 186, 194, 0.5);
+  background-color: rgba(183, 220, 228, 0.5);
   transition: 0.5s ease-in;
+  width: 65%;
 }
 
 .newToDoValue:hover {
