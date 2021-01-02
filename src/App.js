@@ -12,6 +12,7 @@ const App = createReactClass({
       toDoList: [],
       id: 0,
       backgroundColor: { value: "white", label: "White" },
+      headerTitle: "",
     };
   },
 
@@ -38,15 +39,22 @@ const App = createReactClass({
         backgroundColor: backgroundColorLocalStorageObject,
       });
     }
+    const headerTitleLocalStorage = localStorage.getItem("TITLE");
+    if (headerTitleLocalStorage) {
+      this.setState({
+        headerTitle: headerTitleLocalStorage,
+      });
+    }
   },
 
-  // local storage- every time component updates the local storage is updated with the current todolist, and setting/assigning it to the key 'LIST'
+  // local storage- every time component updates the local storage is updated with the current todolist, and setting/assigning it to the key 'LIST'.
   componentDidUpdate() {
     if (this.state.toDoList.length >= 15) {
       return window.alert("Too many items in the list");
     }
     localStorage.setItem("LIST", JSON.stringify(this.state.toDoList));
     localStorage.setItem("COLOR", JSON.stringify(this.state.backgroundColor));
+    localStorage.setItem("TITLE", this.state.headerTitle);
   },
 
   updateNewToDo(event) {
@@ -136,14 +144,22 @@ const App = createReactClass({
     }
   },
 
-  // event that changes the background color of app
+  // method that handles the react select onchange to change the background color of app
   handleChangeBackgroundColor(backgroundColor) {
     this.setState({
-      backgroundColor,
+      backgroundColor: backgroundColor,
+    });
+  },
+
+  // updating the header title
+  updateHeaderTitle(event) {
+    this.setState({
+      headerTitle: event.target.value,
     });
   },
 
   render() {
+    document.title = this.state.headerTitle;
     // below is rendering the header and todos components
     return (
       <div
@@ -157,6 +173,8 @@ const App = createReactClass({
           clearToDos={this.clearToDos}
           toDoList={this.state.toDoList}
           onNewToDoKeyDown={this.onNewToDoKeyDown}
+          headerTitle={this.state.headerTitle}
+          updateHeaderTitle={this.updateHeaderTitle}
         />
         <Todos
           toDoListItems={this.state.toDoList}

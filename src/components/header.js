@@ -1,11 +1,15 @@
 import "../styles/header.css";
 import HeaderAddTodo from "./headerAddTodo";
+import EditHeaderTitle from "./editHeaderTitle";
 
 function Header(props) {
   return (
     <header className="header">
       <div>
-        <h1 className="titleUnderline">To Do List</h1>
+        <EditHeaderTitle
+          headerTitle={props.headerTitle}
+          updateHeaderTitle={props.updateHeaderTitle}
+        />
         <button
           className="clearButton"
           onClick={props.clearToDos}

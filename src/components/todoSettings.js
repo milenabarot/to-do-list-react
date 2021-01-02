@@ -11,7 +11,8 @@ const TodoSettings = (props) => {
 
   return (
     //added a new value of background color into the inital state in app.js which controls the value of the select in here
-    // using the react select library to style the select tag, added options array which is passed in to select, classNamePrefix allows many different classnames to be styled under it
+    // using the react select library to style the select tag, added options array which is passed in to select, classNamePrefix allows many different classnames to be styled under it.
+    // this library handles the event method of onchange in the background
     <div className="selectArea">
       <label className="selectBackgroundColor" htmlFor="backgroundColor">
         Choose background colour
@@ -22,6 +23,7 @@ const TodoSettings = (props) => {
         onChange={props.changeBackgroundColor}
         classNamePrefix="selectDropdown"
         isSearchable={false}
+        autoFocus={false}
       />
 
       {/*  old code before added in react select library to style select dropdown
