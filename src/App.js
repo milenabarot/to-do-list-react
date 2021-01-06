@@ -48,13 +48,18 @@ const App = createReactClass({
   },
 
   // local storage- every time component updates the local storage is updated with the current todolist, and setting/assigning it to the key 'LIST'.
-  componentDidUpdate() {
+  // prevState so local storage of LIST doesn't update everytime you only make a change to the color/title -e.g local storage for title only updates when you only make a title change.
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.backgroundColor.value !== prevState.backgroundColor.value) {
+      localStorage.setItem("COLOR", JSON.stringify(this.state.backgroundColor));
+    }
+    if (this.state.headerTitle !== prevState.headerTitle) {
+      localStorage.setItem("TITLE", this.state.headerTitle);
+    }
     if (this.state.toDoList.length >= 15) {
       return window.alert("Too many items in the list");
     }
     localStorage.setItem("LIST", JSON.stringify(this.state.toDoList));
-    localStorage.setItem("COLOR", JSON.stringify(this.state.backgroundColor));
-    localStorage.setItem("TITLE", this.state.headerTitle);
   },
 
   updateNewToDo(event) {

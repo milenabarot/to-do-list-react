@@ -11,7 +11,7 @@ function Todos(props) {
     ["asc", "desc"]
   );
   return (
-    // sorted todolistitems, using lodash(a-z) orderBy method, which gives me new const sortedtodolist, and then mapped over this to create a list with li's
+    // sorted todolistitems, using lodash-a-z- orderBy method, which gives new const sortedtodolist, and then mapped over this to create a list with li's
     //added in framer animation using props
     // item is the name of the iteratee, that it passed through the map function of todolistitems, and then every to do item is then the 'item'
     <AnimateSharedLayout type="crossfade">
